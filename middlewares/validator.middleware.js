@@ -16,7 +16,7 @@ const LogValidator = AsyncHandler(async (req, _, next) => {
     const valid = LogSchema.validate(logData)
     if (valid.error) {
         console.log(valid.error.details)
-        throw new ApiError(400, ErrorCodes.Invalidlogdata, ErrorCodes.Invalidlogdata)
+        throw new ApiError(400, ErrorCodes.Invalidlogdata, valid.error.details[0].message)
     }
 
     next()
